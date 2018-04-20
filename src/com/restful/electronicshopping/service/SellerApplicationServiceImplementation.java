@@ -3,26 +3,23 @@ package com.restful.electronicshopping.service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.restful.electronicshopping.dao.DAOImplementation;
 import com.restful.electronicshopping.entity.Product;
 import com.restful.electronicshopping.entity.Response;
 import com.restful.electronicshopping.exception.ServiceException;
 
-import com.restful.electronicshopping.dao.DAOImplementation;
-
 
 @Path("/sellerapp")
 @Consumes(MediaType.APPLICATION_XML)
-@Produces(MediaType.APPLICATION_XML)
-@WebServlet("/sellerapplication")
-public class SellerApplicationServiceImplementation extends HttpServlet implements SellerApplicationServiceInterface {
+//@Produces(MediaType.APPLICATION_XML)
+//@WebServlet("/sellerapplication")
+public class SellerApplicationServiceImplementation /*extends HttpServlet */implements SellerApplicationServiceInterface {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -33,6 +30,7 @@ public class SellerApplicationServiceImplementation extends HttpServlet implemen
 		try {
 			DAOImplementation daoimp = new DAOImplementation();
 			daoimp.addProduct(p);
+			System.out.println("---------------"+p.getPrice());
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

@@ -5,6 +5,51 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>RESTE_Shopping</name>
+  <dependencies>
+
+    <dependency>
+
+      <groupId>junit</groupId>
+
+      <artifactId>junit</artifactId>
+
+      <version>3.8.1</version>
+
+      <scope>test</scope>
+
+    </dependency>
+
+    <dependency>
+
+            <groupId>com.sun.jersey</groupId>
+
+            <artifactId>jersey-client</artifactId>
+
+            <version>1.8</version>
+
+      </dependency>
+
+          <dependency>
+
+                  <groupId>com.sun.jersey</groupId>
+
+                  <artifactId>jersey-server</artifactId>
+
+                  <version>1.8</version>
+
+            </dependency>
+
+            <dependency>
+
+            <groupId>com.sun.jersey</groupId>
+
+            <artifactId>jersey-json</artifactId>
+
+            <version>1.8</version>
+
+      </dependency>    
+
+  </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
