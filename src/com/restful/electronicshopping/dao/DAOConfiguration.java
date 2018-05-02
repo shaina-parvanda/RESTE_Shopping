@@ -12,7 +12,7 @@ public class DAOConfiguration {
 
 	protected static Connection cn;
 
-	private final static String url = "jdbc:mysql://localhost:3306/shoppingapp";
+	private final static String url = "jdbc:mysql://localhost:3306/product_details";
 	private final static String username = "root";
 	private final static String password = "Mysql@123"; 
 
