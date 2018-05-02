@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 //import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response.Status;
 
 import com.restful.electronicshopping.dao.DAOImplementation;
 import com.restful.electronicshopping.entity.Product;
@@ -33,16 +34,16 @@ public class SellerApplicationServiceImplementation /*extends HttpServlet*/ impl
 	@Consumes({"application/xml"})
 	public Response addProduct(Product p) throws ServiceException{
 		
-		System.out.println("-------ADD-------"+p.getProductName());
-		String result = "Object Added : " + p;
-		/*try {
+		String  result = "Error Adding Data";
+		try {
 			DAOImplementation daoimp = new DAOImplementation();
 			daoimp.addProduct(p);
-			System.out.println("---------------"+p.getPrice());
+			result = "Product '"  + p.getProductName() + "' have been added Added";
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
-		}*/
-		return Response.status(201).entity(result).build();	
+			return Response.status(Status.NOT_MODIFIED).entity(result).build();
+		}
+		return Response.status(Status.CREATED).entity(result).build();	
 	}
 
 	@Override

@@ -55,41 +55,16 @@ public class DAOImplementation implements DAOInterface{
 		}
 		try {
 			add_stmnt.setLong(1, p.getProductID());
-		} catch (SQLException e) {
-			throw new DAOException(e.getMessage());
-		}
-		try {
 			add_stmnt.setString(2, p.getProductName());
-		} catch (SQLException e) {
-			throw new DAOException(e.getMessage());
-		}
-		try {
 			add_stmnt.setString(3, p.getProductCategory());
-		} catch (SQLException e) {
-			throw new DAOException(e.getMessage());
-		}
-		try {
 			add_stmnt.setLong(4, (long) p.getPrice());
-		} catch (SQLException e) {
-			throw new DAOException(e.getMessage());
-		}
-		try {
 			add_stmnt.setLong(5, p.getCurrentstocknumbers());
-		} catch (SQLException e) {
-			throw new DAOException(e.getMessage());
-		}
-		try {
 			add_stmnt.setString(6, p.getRemarks());
 		} catch (SQLException e) {
 			throw new DAOException(e.getMessage());
 		}
-		
 		try {
 			add_stmnt.executeUpdate();
-		} catch (SQLException e) {
-			throw new DAOException(e.getMessage());
-		}
-		try {
 			add_stmnt.close();
 		} catch (SQLException e) {
 			throw new DAOException(e.getMessage());
