@@ -4,12 +4,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+import javax.naming.spi.DirStateFactory.Result;
 
 import com.restful.electronicshopping.dao.*;
 import com.restful.electronicshopping.entity.Product;
 import com.restful.electronicshopping.entity.Response;
 
 import com.restful.electronicshopping.exception.*;
+import com.sun.xml.bind.v2.schemagen.xmlschema.List;
 
 
 /**
@@ -53,12 +58,13 @@ public class DAOImplementation implements DAOInterface{
 		} catch (SQLException e) {
 			throw new DAOException(e.getMessage());
 		}
+		System.out.println("<><><><>"+p.getCurrentstocknumbers() + "<><><><>" + p.getRemarks());
 		try {
 			add_stmnt.setLong(1, p.getProductID());
 			add_stmnt.setString(2, p.getProductName());
 			add_stmnt.setString(3, p.getProductCategory());
 			add_stmnt.setLong(4, (long) p.getPrice());
-			add_stmnt.setLong(5, p.getCurrentstocknumbers());
+			add_stmnt.setInt(5, p.getCurrentstocknumbers());
 			add_stmnt.setString(6, p.getRemarks());
 		} catch (SQLException e) {
 			throw new DAOException(e.getMessage());
@@ -84,9 +90,11 @@ public class DAOImplementation implements DAOInterface{
 	}
 
 	@Override
-	public ResultSet getDetailsofOneProduct(int ProductId) throws ClassNotFoundException, SQLException {
-		String sql_str = "SELECT * FROM product_details pd WHERE ProductId pid=ProductId;";
+	public Product getDetailsofOneProduct(int ProductId) throws ClassNotFoundException, SQLException {
+		String sql_str = null;
+		sql_str = "SELECT * FROM product_details WHERE product_id = " + String.valueOf(ProductId) +";";
 		ResultSet rs = null ;
+		Product p = new Product();
 		try {
 			DAOConfiguration.establishConnection();
 		} catch (ClassNotFoundException | SQLException e) {
@@ -101,20 +109,29 @@ public class DAOImplementation implements DAOInterface{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+		while(rs.next()) {
+		    p.setProductID(rs.getInt(1));
+		    p.setProductName(rs.getString(2));
+		    p.setProductCategory(rs.getString(3));
+		    p.setPrice(rs.getDouble(4));
+		    p.setCurrentstocknumbers(rs.getInt(5));
+		    p.setRemarks(rs.getString(5));
+		}
 		try {
 			DAOConfiguration.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return rs;
+		return p;
 	}
 
 	@Override
-	public ResultSet getDetailsofAllProduct() throws ClassNotFoundException, SQLException {
+	public ArrayList<Product> getDetailsofAllProduct() throws ClassNotFoundException, SQLException {
 		String sql_string = "SELECT * FROM product_details pd;";
 		ResultSet rs = null ;
+		Product p = new Product();
+		ArrayList<Product> productList = new ArrayList<Product>();
 		try {
 			DAOConfiguration.establishConnection();
 		} catch (ClassNotFoundException | SQLException e) {
@@ -129,13 +146,21 @@ public class DAOImplementation implements DAOInterface{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+		while(rs.next()) {
+			p.setProductID(rs.getInt(1));
+		    p.setProductName(rs.getString(2));
+		    p.setProductCategory(rs.getString(3));
+		    p.setPrice(rs.getDouble(4));
+		    p.setCurrentstocknumbers(rs.getInt(5));
+		    p.setRemarks(rs.getString(5));
+		    productList.add(p);
+		}
 		try {
 			DAOConfiguration.closeConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return rs;
+		return productList;
 	}
 }

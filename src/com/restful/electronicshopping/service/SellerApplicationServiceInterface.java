@@ -2,6 +2,7 @@ package com.restful.electronicshopping.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.restful.electronicshopping.entity.Product;
 //import com.restful.electronicshopping.entity.Response;
@@ -14,7 +15,7 @@ public interface SellerApplicationServiceInterface {
 
 	public Response deleteProduct(int ProductId) throws ServiceException;
 
-	public ResultSet getDetailsofOneProduct(int ProductId) throws ServiceException, ClassNotFoundException, SQLException;
+	public Response getDetailsofOneProduct(Product P) throws ServiceException, ClassNotFoundException, SQLException;
 
-	public ResultSet getDetailsofAllProduct() throws ServiceException, ClassNotFoundException, SQLException;
+	public ArrayList<Product> getDetailsofAllProduct() throws ServiceException, ClassNotFoundException, SQLException;
 }

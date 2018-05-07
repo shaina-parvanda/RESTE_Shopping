@@ -14,7 +14,7 @@ public class DAOConfiguration {
 
 	private final static String url = "jdbc:mysql://localhost:3306/product_details";
 	private final static String username = "root";
-	private final static String password = "Mysql@123"; 
+	private final static String password = "password123"; 
 
 	public static void establishConnection() throws SQLException, ClassNotFoundException {
 		Class.forName("com.mysql.jdbc.Driver");

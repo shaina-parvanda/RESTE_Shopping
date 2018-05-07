@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="add">
+	<form action="ProductDetailsClient.jsp">
 		productID : &nbsp; <input type="number" name="id"><br>
 		<br> productName &nbsp; : &nbsp; <input type="text" name="name"><br>
 		<br> productCategory &nbsp; : &nbsp; <input type="text" name="cat"><br>
